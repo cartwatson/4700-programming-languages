@@ -1,11 +1,12 @@
 # programs
-legal1 = "(+ (+ (+ 5 6) 6) 7)"
-legal2 = "(+ (- (+ 5 1) 6) 7)"
-legal3 = "(- (- (- 9 6) 1) 2)"
-illegal1 = "(= 5 5)"
-illegal2 = "(+ 5 5 5)"
-illegal3 = "(- 5 5"
-
+programs = [
+  "(+ (+ (+ 5 6) 6) 7)",
+  "(+ (- (+ 5 1) 6) 7)",
+  "(- (- (- 9 6) 1) 2)",
+  "(= 5 5)",
+  "(+ 5 5 5)",
+  "(- 5 5"
+]
 # -- starter code --
 def tokenize(string):
   #inputs a string containing a Delta expression
@@ -38,14 +39,15 @@ def balanced(tokenList):
   return closedParantheses == openParantheses
 
 # prettyPrint
-#print an expression readably
+# print an expression readably
 def prettyPrint(parsed, spacing=0):
   # iterate through parsed input
   for i in range(len(parsed)):
+    # handle nested expressions
     if type(parsed[i]) == type([]):
       spacing += 1
       prettyPrint(parsed[i], spacing)
-    
+    # print operators/operands  
     if parsed[i] == '+' or parsed[i] == '-':
       print(spacing * "  " + '(' + parsed[i])
     elif type(parsed[i]) == type(1):
@@ -53,27 +55,28 @@ def prettyPrint(parsed, spacing=0):
     else:
       print(spacing * "  " + ')')
       spacing -= 1
+  # print final close parantheses
   if spacing == 0:
     print(')')
 
 # main
+# helper function to get clean output
 def runProgram(input):
   tokenList = tokenize(input)
   if (balanced(tokenList)):
+    # TODO: another check for invalid programs ???
     print("-- Legal Program --")
     parsed = parser(tokenList)
-    print(parsed)
+    # print(parsed) # DEBUG ONLY
     prettyPrint(parsed)
-  else:
-    print("-- Illegal Program --")
-    print("Operations not performed")
+    return
+  print("-- Illegal Program --")
+  print("Operations not performed")
 
 # run programs
 print("--- Legal Programs ---")
-runProgram(legal1)
-runProgram(legal2)
-runProgram(legal3)
+for i in range(3):
+    runProgram(i)
 print("--- Illegal Programs ---")
-runProgram(illegal1)
-runProgram(illegal2)
-runProgram(illegal3)
+for i in range(4, 6):
+    runProgram(i)
