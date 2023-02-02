@@ -93,6 +93,6 @@ code = "(fun plus1 (x) (+ 1 x)) (plus1 (plus1 7))"
 run(code)
 
 codeFactorial="(fun fac (x) (if (== x 0) (1) (* x (- x 1)))) (fac 3)"
-codeFibonacci="(fun fib (x) (if (<  x 2) (x) (+ (fib (- x 1)) (fib (- x 2))))) (fib 1)"
+codeFibonacci="(fun fib (x) (if (<  x 2) x (+ (fib (- x 1)) (fib (- x 2))))) (fib 8)"
 run(codeFactorial)
 run(codeFibonacci)
