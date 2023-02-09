@@ -132,13 +132,16 @@ code += '''(fun nth (index list)
               )
             )'''
 code += '''(fun append (list0 list1)
-              (if (❗(== list1 nil))
-                (append (comp (first list1) list0) (rest list1))
-                list0 
+              (if (❗(== list0 nil))
+                (if (❗(== list1 nil))
+                  (comp (first list0) (append (rest list0) list1))
+                  list0 
+                )
+                list1 
               )
             )'''
 
-# ----- test cases
+# ----- test cases -----
 # --- provided test code for comp, rest, first, and nil
 # code = "(comp 1 nil) (first (comp (+ 3 4) nil)) (rest (comp 1 (comp 2 nil)))"
 # --- test cases for builtin functions
@@ -154,6 +157,6 @@ code += "(append (comp 6 nil) nil)"
 code += "(append nil (comp 7 nil))"
 code += "(append (comp 1 nil) (createList 100 200 3))"
 code += "(append (createList 1 2 3) (createList 20 30 3))"
-# code += "(nth 4 (append (createList 1 2 3) (creatList 20 30 3)))"
+code += "(nth 4 (append (createList 1 2 3) (createList 20 30 3)))"
 
 run(code)
