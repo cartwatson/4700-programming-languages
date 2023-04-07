@@ -1,0 +1,195 @@
+// TASK 1----------------------------------------------------------------------
+void main() {
+  var myList = [1.0, 5.0, 7.0];
+  print(reverse(myList));
+  print(myList.maxValue); // prints 7
+  myList = [-1, -5, -7];
+  print(myList.maxValue); // prints -1
+  myList = [];
+  print(myList.maxValue); // prints null or throws an exception
+}
+
+// TASK 2----------------------------------------------------------------------
+List reverse(List x) {
+  var y = [];
+  for (var i = 0; i < x.length; i++) {
+    y.add(x[x.length - 1 - i]);
+  }
+  return y;
+}
+
+// TASK 3----------------------------------------------------------------------
+extension ListNumExtensions on List<num> {
+  num? get maxValue {
+    // make max nullable
+    num? max = null;
+    for (var i = 0; i < this.length; i++) {
+      // init max with a value
+      if (max == null) { max = this[i]; }
+      // else see if val is bigger than current max
+      if (max < this[i]) { max = this[i]; }
+    }
+    return max;
+  }
+}
+
+// TASK 4----------------------------------------------------------------------
+// class implementation
+abstract class Vehicle {
+  int topSpeedMph;
+  
+  Vehicle(this.topSpeedMph);
+  
+  int getTopSpeed();
+}
+
+abstract class MotorizedVehicle extends Vehicle {
+  String fuelType;
+  
+  MotorizedVehicle(int topSpeed, this.fuelType) : super(topSpeed);
+  
+  String getFuelType();
+}
+
+abstract class WheeledVehicle extends Vehicle {
+  int numWheels;
+  
+  WheeledVehicle(int topSpeed, this.numWheels) : super(topSpeed);
+  
+  int getNumWheels();
+}
+
+class Airplane extends MotorizedVehicle {
+  Airplane(String fuelType, int topSpeedMph) : super(topSpeedMph, fuelType);
+  
+  @override
+  String getFuelType() { return fuelType; }
+  
+  @override
+  int getTopSpeed() { return topSpeedMph; }
+}
+
+class Unicycle extends WheeledVehicle {
+  Unicycle(int numWheels, int topSpeedMph) : super(topSpeedMph, numWheels);
+  
+  @override
+  int getNumWheels() { return numWheels; }
+  
+  @override
+  int getTopSpeed() { return topSpeedMph; }
+}
+
+class MotorCycle extends WheeledVehicle implements MotorizedVehicle {
+  @override
+  String fuelType;
+  
+  MotorCycle(int numWheels, int topSpeedMph, this.fuelType) : super(topSpeedMph, numWheels);
+  
+  @override
+  String getFuelType() { return fuelType; }
+  
+  @override
+  int getNumWheels() { return numWheels; }
+  
+  @override
+  int getTopSpeed() { return topSpeedMph; }
+}
+
+void main() {
+  List<Vehicle> vehicles = [Airplane("Jet Fuel", 320), Unicycle(1, 15), MotorCycle(2, 115, "Gas")];
+  for (int i = 0; i < vehicles.length; i++) {
+    Vehicle v = vehicles[i];
+    // print type of vehicle
+    if (v is Airplane)   { print("Airplane");   }
+    if (v is Unicycle)   { print("Unicycle");   }
+    if (v is MotorCycle) { print("Motorcycle"); }
+    // print vehicle stats
+    print("Top Speed: ${v.topSpeedMph}");
+    if (v is WheeledVehicle)   { print("Wheels:    ${v.numWheels}"); }
+    if (v is MotorizedVehicle) { print("Fuel Type: ${v.fuelType}");  }
+    // print blank line for spacing
+    print("");
+  }
+}
+
+// FLUTTER---------------------------------------------------------------------
+// Copyright (c) 2019, the Dart project authors.  Please see the AUTHORS file
+// for details. All rights reserved. Use of this source code is governed by a
+// BSD-style license that can be found in the LICENSE file.
+
+import 'package:flutter/material.dart';
+
+void main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  final String title;
+
+  const MyHomePage({
+    Key? key,
+    required this.title,
+  }) : super(key: key);
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  int _counter = 1;
+
+  void _incrementCounter() {
+    setState(() {
+       _counter *= 5;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.title),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text(
+              'Current Value:',
+            ),
+            Text(
+              '$_counter',
+              style: Theme.of(context).textTheme.headlineMedium,
+            ),
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _incrementCounter,
+        tooltip: 'Multiply by 5',
+        child: const Icon(Icons.tab_rounded),
+      ),
+    );
+  }
+}
+
+
+// QUESTIONS-------------------------------------------------------------------
+// DART
+// 1. no accessibility modifiers (public private etc)
+// 2. typing can be defined but can also just be var
+// FLUTTER
+// 1. just an observation but i feel like flutter accomplishes the same things as kotlin but is much easier to read in my opinion
+// 2. I haven't ever seen anything like the routes taht is has on the GoRouter Sample

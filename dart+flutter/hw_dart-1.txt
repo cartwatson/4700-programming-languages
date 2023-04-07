@@ -1,0 +1,103 @@
+//  HOMEWORK:
+//  * TASK2.-------------------------------------------------
+//  * Write a function that takes a List as input 
+//    and returns a copy of the list reversed. 
+//  * You may use either of two methods:
+//    First -- the function uses for-loops to construct the reversed list.
+//    You might want to use .add() method (anologous to .append() in Python)
+//    Second -- the function is the laisy one - it uses reversed.toList() method
+//   
+//  * Hints: 
+//  * function syntax:
+//  * <return type> functionName(<argument type> argName) {
+//       <the body>;
+//       return <returned object>;
+//   }
+//   Example:
+//   bool isNoble(int atomicNumber) {
+//   return _nobleGases[atomicNumber] != null;
+//   }
+  
+//   You alse can use shorter way for functions that contain one expression:
+//   bool isNoble(int atomicNumber) => _nobleGases[atomicNumber] != null;
+  
+//  * for-loop syntax:
+//       for (var i = <start>; <stopping condition>; <increment>) {
+//          <for-loop body>;
+//       }
+//  * declaring a list variable:
+//       var list_name = [element1, element2];
+// 
+// 
+// void main() {
+//   var myList = [1, 3.5, true, 'hello'];
+//   print(reverse(myList)); // [hello, true, 3.5, 1]
+//   myList = [7, 'blue', 0.3];
+//   print(reverseLaisy(myList)); // [0.3, blue, 7]
+// }
+
+      
+// Your Solution------------
+
+
+//  * TASK3.-------------------------------------------------
+//  * Write an extension method on List<num> named maxValue 
+//    that returns the element of maximum value 
+//    (a link to the examples is in the assignment description).
+//    When input list is empty, the function returns null 
+//    or throws an exception
+//  * Confirm that your method works for lists of int or lists of double.
+// 
+//  * Hints:
+//  * syntax of if-conditional statements:
+//    if(boolean_expression){ 
+//      // statement(s) will execute if the Boolean expression is true. 
+//    } else { 
+//      // statement(s) will execute if the Boolean expression is false. 
+//    } 
+//  * isEmpty might be usefull
+//  * syntax of the extensions:
+//    extension <extension name>? on <type> {
+//        <member definition>;
+//    }
+// 
+// 
+// void main() {
+//   var myList = [1.0, 5.0, 7.0];
+//   print(myList.maxValue); // prints 7
+//   myList = [-1, -5, -7];
+//   print(myList.maxValue); // prints -1
+//   myList = [];
+//   print(myList.maxValue); // prints null or throws an exception
+// }
+
+
+// Your Solution------------
+
+
+
+
+//  * TASK4.-------------------------------------------------
+//  Implement:
+//  * An abstract Vehicle class that defines an int topSpeedMph 
+//    getter to be implemented by subclasses.
+//  * An abstract MotorizedVehicle class that extends Vehicle 
+//    and defines a String fuelType getter to be implemented by subclasses.
+//  * An abstract WheeledVehicle class that extends Vehicle and 
+//    defines an int numWheels getter to be implemented by subclasses.  
+//  * An Airplane class that extends MotorizedVehicle.
+//  * A Unicycle class that extends WheeledVehicle.
+//  * A Motorcycle class that extends WheeledVehicle and implements MotorizedVehicle.
+//  * In main() function:
+//       Create a List<Vehicle> which contains an Airplane, a Unicycle, and a Motorcycle.
+//       Iterate through each vehicle in the list and for each element:
+//           Print its top speed
+//           If it is a MotorizedVehicle, print its fuelType
+//           If it is a WheeledVehicle, print its number of wheels
+
+
+
+// Your Solution------------
+
+
+
